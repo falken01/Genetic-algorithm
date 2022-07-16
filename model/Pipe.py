@@ -8,21 +8,26 @@ class Pipe:
 
     def __init__(self, x):
         self.border = None
+        self.numberOfPipes = 100
+        self.pipesCords = [random.randint(-500, -300) for i in range(0, self.numberOfPipes)]
         self.x = x
         self.pipeBottom = self.IMG
         self.pipeTop = pygame.transform.flip(self.IMG, False, True)
-        self.y = self.setHeight()
         self.velocity = 5
         self.GAP = 850
         self.top = 0
         self.mid = x
         self.passed = False
         self.bottom = 0
+        self.whichPipe = 0
+        self.y = self.setHeight()
+
 
     def setHeight(self):
         self.top = self.pipeTop.get_height()
         self.bottom = self.pipeBottom.get_height()
-        rInt = random.randint(-500, -300)
+        rInt = self.pipesCords[self.whichPipe]
+        self.whichPipe =+ 1
         return rInt
 
     def move(self):
